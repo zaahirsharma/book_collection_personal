@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Books" %>
+
+<h1>Books</h1>
+
+<div id="books">
+  <% @books.each do |book| %>
+    <div id="<%= dom_id book %>">
+      <p>
+        <strong>Title:</strong>
+        <%= book.title %>
+      </p>
+
+      <p><strong>Author:</strong> <%= book.author %></p>
+      <p><strong>Price:</strong> <%= book.price %></p>
+      <p><strong>Date:</strong> <%= book.published_date %></p>
+      
+      <p>
+        <%= link_to "Show this book", book %> |
+        <%= link_to "Edit this book", edit_book_path(book) %> |
+        
+        <%= link_to "Delete", delete_book_path(book) %> 
+      </p>
+    </div>
+    <hr>
+  <% end %>
+</div>
+
+<%= link_to "New book", new_book_path %>
