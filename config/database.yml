@@ -1,7 +1,7 @@
-# Had Gemini create a new database.yml because deployment wasn't workking for staging & production.
-# ---------------------------------------------------
+# Had Gemini create a new database.yml 
+# because deployment wasn't workking for staging & production.
+
 #  1. SHARED SETTINGS (Used by Development & Test)
-# ---------------------------------------------------
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -10,22 +10,17 @@ default: &default
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
 
-# ---------------------------------------------------
-#  2. LOCAL DOCKER SETTINGS (Your Mac)
-# ---------------------------------------------------
+#  2. LOCAL DOCKER SETTINGS (My Mac)
 development:
   <<: *default
   database: test_app_development
 
+#  3. TEST SETTINGS (The Cloud)
 test:
   <<: *default
   database: test_app_test
 
-# ---------------------------------------------------
-#  3. HEROKU SETTINGS (The Cloud)
-# ---------------------------------------------------
-# We DO NOT use *default here. We define a fresh connection 
-# specifically for Heroku's environment.
+#  4. HEROKU SETTINGS (The Cloud)
 production:
   primary: &primary_production
     adapter: postgresql
